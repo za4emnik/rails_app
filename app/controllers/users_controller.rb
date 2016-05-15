@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  http_basic_authenticate_with name: "admin", password: "admin", except: [:index, :show]
+
   def show
     @user = User.find(params[:id])
   end
@@ -12,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def create
@@ -30,6 +34,13 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+
+    redirect_to users_path
   end
 
   private
