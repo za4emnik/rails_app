@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-
-  http_basic_authenticate_with name: "admin", password: "admin", except: [:index, :show]
+  before_action :authenticate, only: [:show, :edit, :destroy]
 
   def show
     @user = User.find(params[:id])
@@ -20,7 +19,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
+    if @user.save!
       redirect_to @user
     else
       render 'new'
@@ -43,8 +42,16 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  protected
+   def authenticate
+     authenticate_or_request_with_http_token do |token, options|
+       User.where(auth_token: token).first
+     end
+   end
+
   private
    def user_params
-     params.require(:user).permit(:name, :mail)
+     params.require(:user).permit(:name, :mail, :auth_token)
    end
+
 end
