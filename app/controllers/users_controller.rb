@@ -4,7 +4,11 @@ class UsersController < BaseController
 
   def show
     @user = User.find(session[:user_id])
+<<<<<<< HEAD
     @image = UserImage.where(user_id: session[:user_id]).order(created_at: :desc).page params[:page] 
+=======
+    @image = UserImage.where(user_id: session[:user_id]).order(created_at: :desc).page params[:page]
+>>>>>>> 25329dfdddf11b11a8c93206ba353c477b956999
 
   end
 
