@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
 
   resources :users
-
+  resource :session, only: [:create, :destroy, :new]
   get 'welcome/index'
-  get 'authorization/login'
-  post 'authorization/check'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

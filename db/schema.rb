@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 20160514133126) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "mail"
-    t.string   "auth_token"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end
