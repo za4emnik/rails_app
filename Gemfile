@@ -26,8 +26,11 @@ gem 'therubyracer'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem 'bcrypt-ruby', '3.1.2' 
+gem 'bcrypt-ruby', '3.1.2'
 gem 'protected_attributes'
+gem 'carrierwave'
+gem 'kaminari'
+#gem 'grape'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

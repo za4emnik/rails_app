@@ -12,6 +12,15 @@
   <%= @user.mail %>
 </p>
 
+<p>
+  <strong>all images</strong><br>
+  <% @image.each do |p| %>
+  <%= image_tag p.image_url, :style => "width: 300px; height: 250px;"  %>
+<% end %>
+</p>
+
+<%= paginate @image %>
+
 <%= link_to 'Back', users_path %>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Quit', session_path, method: :delete %> |
