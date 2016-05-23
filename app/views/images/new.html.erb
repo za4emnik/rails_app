@@ -1,0 +1,7 @@
+<h1>Adding images</h1>
+<%= form_for :images, url: images_path  do |f| %>
+  <%= f.file_field :image, :multiple => true, name: "user_image[image][]" %>
+</p>
+  <%= f.submit %>
+</p>
+<% end %>

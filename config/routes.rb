@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
   resources :users
+  resources :images
   resource :session, only: [:create, :destroy, :new]
+  #resource :images, only: [:create, :destroy, :new]
+  #delete 'images/:id' => 'image#destroy'
   get 'welcome/index'
 
 

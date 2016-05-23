@@ -1,14 +1,8 @@
 class UsersController < BaseController
 
-  before_action :auth,  only: [:new, :create, :destroy, :edit, :index]
-
   def show
     @user = User.find(session[:user_id])
-<<<<<<< HEAD
-    @image = UserImage.where(user_id: session[:user_id]).order(created_at: :desc).page params[:page] 
-=======
-    @image = UserImage.where(user_id: session[:user_id]).order(created_at: :desc).page params[:page]
->>>>>>> 25329dfdddf11b11a8c93206ba353c477b956999
+    @image = UserImage.where(user_id: session[:user_id]).page params[:page]
 
   end
 
@@ -36,9 +30,6 @@ class UsersController < BaseController
   def update
     @user = User.find(session[:user_id])
     if @user.update(user_params)
-      params[:user_image]['image'].each do |image|
-        @user_image = @user.user_image.create!(:image => image, :user_id => session[:user_id])
-      end
       redirect_to @user
     else
       render 'edit'
@@ -49,20 +40,11 @@ class UsersController < BaseController
     @user = User.find(session[:user_id])
     @user.destroy
 
-    redirect_to users_path
+    redirect_to new_session_path
   end
 
   private
    def user_params
      params.require(:user).permit(:name, :mail, :password, :user_image)
-   end
-
-   def auth
-      if session[:user_id]
-        @user = User.find(session[:user_id])
-        return @user
-      else
-        redirect_to new_session_path, status:401
-      end
    end
 end
